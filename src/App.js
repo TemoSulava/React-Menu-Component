@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import menu from "./data";
+import Buttons from "./components/Buttons";
+import Title from "./components/Title";
+import MenuItem from "./components/MenuItem";
 
 function App() {
+  const [data, setData] = useState(menu);
+  const [menuItems, setMenuItems] = useState(data)
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <section className="menu section">
+        <Title />
+        <Buttons setMenuItems={setMenuItems} data={data}/>
+        <div className="section-center">
+          {menuItems.map((dat) => {
+            return <MenuItem {...dat} />;
+          })}
+        </div>
+      </section>
+    </main>
   );
 }
 
